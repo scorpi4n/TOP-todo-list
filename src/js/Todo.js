@@ -1,7 +1,15 @@
 export class Todo {
-  constructor(title, description, dueDate, priority, id = crypto.randomUUID()) {
+  constructor(
+    title,
+    description,
+    category,
+    dueDate,
+    priority,
+    id = crypto.randomUUID()
+  ) {
     this.title = title;
     this.description = description;
+    this.category = category;
     this.dueDate = dueDate;
     this.priority = priority;
     this.id = id;
@@ -35,6 +43,7 @@ export class Todo {
       let tmp = new Todo(
         todo.title,
         todo.description,
+        todo.category,
         todo.dueDate,
         todo.priority,
         todo.id
