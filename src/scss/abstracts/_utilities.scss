@@ -1,0 +1,19 @@
+@use "colors" as *;
+
+// manual utility classes
+.logo {
+  font-family: Lora, serif;
+  font-size: 2.5rem;
+}
+
+// generated utility classes
+@each $color, $shades in $colors {
+  @each $shade, $value in $shades {
+    .text-#{$color}-#{$shade} {
+      color: $value;
+    }
+    .bg-#{$color}-#{$shade} {
+      background-color: $value;
+    }
+  }
+}
