@@ -12,11 +12,18 @@ export class Todo {
     this.category = category;
     this.dueDate = dueDate;
     this.priority = priority;
+    this.isCompleted = false;
     this.id = id;
   }
 
   display() {
-    console.log(`Title: ${this.title}\nID: ${this.id}`);
+    console.log(
+      `Title: ${this.title}\nCompleted: ${this.isCompleted}\nID: ${this.id}`
+    );
+  }
+
+  complete() {
+    this.isCompleted = true;
   }
 
   delete() {
