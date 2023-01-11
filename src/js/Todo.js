@@ -28,11 +28,12 @@ export class Todo {
   }
 
   delete() {
-    let todos = loadTodos();
-    todos = todos.filter(function (todo) {
+    let todos = Todo.load();
+    // filter out what we want deleted
+    todos = todos.filter(todo => {
       return todo.id !== this.id ? true : false;
     });
-    saveTodos(todos);
+    Todo.save(todos);
   }
 
   static create(title, description, category, dueDate, priority) {
@@ -71,7 +72,7 @@ export class Todo {
         todo.isCompleted,
         todo.id
       );
-      // replace each todo with Todo object to append methods
+      // replace each item with Todo object to append methods
       todos[todos.indexOf(todo)] = tmp;
     });
 
