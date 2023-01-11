@@ -5,14 +5,15 @@ export class Todo {
     category,
     dueDate,
     priority,
-    id = crypto.randomUUID()
+    isCompleted,
+    id
   ) {
     this.title = title;
     this.description = description;
     this.category = category;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.isCompleted = false;
+    this.isCompleted = isCompleted;
     this.id = id;
   }
 
@@ -34,6 +35,20 @@ export class Todo {
     saveTodos(todos);
   }
 
+  static create(title, description, category, dueDate, priority) {
+    let todo = new Todo(
+      title,
+      description,
+      category,
+      dueDate,
+      priority,
+      false,
+      crypto.randomUUID()
+    );
+
+    return todo;
+  }
+
   static save(todos) {
     localStorage.setItem("todos", JSON.stringify(todos));
   }
@@ -41,7 +56,7 @@ export class Todo {
   static load() {
     let todos = JSON.parse(localStorage.getItem("todos"));
 
-    if (todos === null) {
+    if (!todos) {
       this.save([]);
       return [];
     }
@@ -53,6 +68,7 @@ export class Todo {
         todo.category,
         todo.dueDate,
         todo.priority,
+        todo.isCompleted,
         todo.id
       );
       // replace each todo with Todo object to append methods
