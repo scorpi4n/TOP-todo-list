@@ -1,16 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
 export default class Todo {
-  constructor(
-    title,
-    description,
-    category,
-    dueDate,
-    priority,
-    isCompleted,
-    id
-  ) {
-    this.title = title;
+  constructor(name, description, category, dueDate, priority, isCompleted, id) {
+    this.name = name;
     this.description = description;
     this.category = category;
     this.dueDate = dueDate;
@@ -21,7 +13,7 @@ export default class Todo {
 
   display() {
     console.log(
-      `Title: ${this.title}\nCompleted: ${this.isCompleted}\nID: ${this.id}`
+      `Name: ${this.name}\nCompleted: ${this.isCompleted}\nID: ${this.id}`
     );
   }
 
@@ -33,14 +25,14 @@ export default class Todo {
     let todos = Todo.load();
     // filter out what we want deleted
     todos = todos.filter(todo => {
-      return todo.id !== this.id ? true : false;
+      todo.id !== this.id;
     });
     Todo.save(todos);
   }
 
-  static create(title, description, category, dueDate, priority) {
-    let todo = new Todo(
-      title,
+  static create(name, description, category, dueDate, priority) {
+    return new Todo(
+      name,
       description,
       category,
       dueDate,
@@ -49,8 +41,6 @@ export default class Todo {
       // would switch to crypto.randomUUID() but jest doesn't like it
       uuidv4()
     );
-
-    return todo;
   }
 
   static save(todos) {
@@ -67,7 +57,7 @@ export default class Todo {
 
     todos.forEach(todo => {
       let tmp = new Todo(
-        todo.title,
+        todo.name,
         todo.description,
         todo.category,
         todo.dueDate,
