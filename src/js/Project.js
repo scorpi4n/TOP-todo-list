@@ -1,11 +1,7 @@
+import { v4 as uuidv4 } from "uuid";
+
 export default class Project {
-  constructor(
-    name,
-    category,
-    todos = [],
-    isCompleted = false,
-    id = crypto.randomUUID()
-  ) {
+  constructor(name, category, todos = [], isCompleted = false, id = uuidv4()) {
     this.name = name;
     this.category = category;
     this.todos = todos;
@@ -20,7 +16,16 @@ export default class Project {
   }
 
   complete() {
-    this.isCompleted = true;
+    // validate that all todos in a project are complete before marking the project complete
+    if (
+      this.todos.filter(todo => {
+        !todo.isCompleted;
+      })
+    ) {
+      return;
+    } else {
+      this.isCompleted = true;
+    }
   }
 
   delete() {
