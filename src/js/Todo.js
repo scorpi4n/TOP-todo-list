@@ -1,4 +1,6 @@
-export class Todo {
+import { v4 as uuidv4 } from "uuid";
+
+export default class Todo {
   constructor(
     title,
     description,
@@ -44,7 +46,8 @@ export class Todo {
       dueDate,
       priority,
       false,
-      crypto.randomUUID()
+      // would switch to crypto.randomUUID() but jest doesn't like it
+      uuidv4()
     );
 
     return todo;
