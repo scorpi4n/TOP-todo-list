@@ -34,6 +34,10 @@ export default class Project {
     });
   }
 
+  addTodo(todo) {
+    this.todos.push(todo);
+  }
+
   static create(name, category) {
     return new Project(name, category);
   }
