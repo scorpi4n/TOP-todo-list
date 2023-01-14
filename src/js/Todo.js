@@ -1,7 +1,17 @@
+// would switch to crypto.randomUUID() but jest doesn't like it
 import { v4 as uuidv4 } from "uuid";
 
 export default class Todo {
-  constructor(name, description, category, dueDate, priority, isCompleted, id) {
+  constructor(
+    name,
+    description,
+    category,
+    dueDate,
+    priority,
+    projectId,
+    isCompleted = false,
+    id = uuidv4()
+  ) {
     this.name = name;
     this.description = description;
     this.category = category;
@@ -30,17 +40,8 @@ export default class Todo {
     Todo.save(todos);
   }
 
-  static create(name, description, category, dueDate, priority) {
-    return new Todo(
-      name,
-      description,
-      category,
-      dueDate,
-      priority,
-      false,
-      // would switch to crypto.randomUUID() but jest doesn't like it
-      uuidv4()
-    );
+  static create(name, description, category, dueDate, priority, projectId) {
+    return new Todo(name, description, category, dueDate, priority, projectId);
   }
 
   static save(todos) {
