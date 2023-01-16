@@ -15,7 +15,7 @@ export default class Todo {
     this.name = name;
     this.description = description;
     this.category = category;
-    this.dueDate = dueDate;
+    this.dueDate = new Date(dueDate);
     this.priority = priority;
     this.projectId = projectId;
     this.isCompleted = isCompleted;
