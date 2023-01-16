@@ -16,7 +16,7 @@ describe("Test Project methods", () => {
   });
 
   // create
-  test(".create() return value", () => {
+  test("create static method return value", () => {
     expect(testProject instanceof Project).toBeTruthy();
   });
 
