@@ -17,15 +17,14 @@ export default class Project {
   }
 
   complete() {
-    // validate that all todos in a project are complete before marking the project complete
-    if (
-      this.todos.filter(todo => {
-        !todo.isCompleted;
-      })
-    ) {
-      return;
-    } else {
+    // validate that no todos in a project are incomplete before marking the project complete
+    const incompleteTodos = this.todos.filter(todo => {
+      return !todo.isCompleted;
+    });
+    if (!incompleteTodos.length) {
       this.isCompleted = true;
+    } else {
+      console.warn("not all todos complete");
     }
   }
 

@@ -35,12 +35,9 @@ describe("Test Project methods", () => {
     });
   });
 
-  // test isn't working
   it("should load project's todos as Todo class", () => {
     const projects = Project.load();
     const todos = projects.at(-1).todos;
-
-    // expect(todos[todos.length - 1] instanceof Todo).toBeTruthy();
 
     todos.forEach(todo => {
       expect(todo).toBeInstanceOf(Todo);
@@ -58,6 +55,15 @@ describe("Test Project methods", () => {
   it("should save array of projects to localStorage", () => {
     Project.save([testProject]);
     expect(Project.load().at(0)).toEqual(testProject);
+  });
+
+  it("should mark the project complete if all it's todos are done", () => {
+    expect(testProject.isCompleted).toBeFalsy();
+    testProject.todos.forEach(todo => {
+      todo.complete();
+    });
+    testProject.complete();
+    expect(testProject.isCompleted).toBeTruthy();
   });
 
   // delete
