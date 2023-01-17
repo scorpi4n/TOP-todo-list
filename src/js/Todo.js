@@ -1,5 +1,6 @@
 // would switch to crypto.randomUUID() but jest doesn't like it
 import { v4 as uuidv4 } from "uuid";
+import Project from "./Project";
 
 export default class Todo {
   constructor(
@@ -8,9 +9,9 @@ export default class Todo {
     category,
     dueDate,
     priority,
-    projectId,
-    isCompleted = false,
-    id = uuidv4()
+    projectId = null,
+    id = uuidv4(),
+    isCompleted = false
   ) {
     this.name = name;
     this.description = description;
@@ -18,25 +19,32 @@ export default class Todo {
     this.dueDate = new Date(dueDate);
     this.priority = priority;
     this.projectId = projectId;
-    this.isCompleted = isCompleted;
     this.id = id;
+    this.isCompleted = isCompleted;
   }
 
   display() {
     console.log(
-      `Name: ${this.name}\nCompleted: ${this.isCompleted}\nID: ${this.id}`
+      `Name: ${this.name}\n
+      Completed: ${this.isCompleted}\n
+      Project: ${
+        Project.load().filter(project => {
+          project.id == this.projectId;
+        }).name
+      }`
     );
   }
 
   complete() {
     this.isCompleted = true;
+    return this;
   }
 
   delete() {
     let todos = Todo.load();
     // filter out what we want deleted
     todos = todos.filter(todo => {
-      todo.id !== this.id;
+      return todo.id !== this.id;
     });
     Todo.save(todos);
   }
@@ -64,8 +72,9 @@ export default class Todo {
         todo.category,
         todo.dueDate,
         todo.priority,
-        todo.isCompleted,
-        todo.id
+        todo.projectId,
+        todo.id,
+        todo.isCompleted
       );
       // replace each item with Todo object to append methods
       todos[todos.indexOf(todo)] = tmp;
