@@ -19,19 +19,19 @@ describe("Test Project methods", () => {
 
   // create
   test("create static method return value", () => {
-    expect(testProject instanceof Project).toBeTruthy();
+    expect(testProject).toBeInstanceOf(Project);
   });
 
   // read
   it("should load an array of todos from localStorage", () => {
-    expect(typeof Project.load()).toEqual(typeof []);
+    expect(Project.load()).toBeInstanceOf(Array);
   });
 
   it("should load projects as Project class", () => {
     const projects = Project.load();
 
     projects.forEach(project => {
-      expect(project instanceof Project).toBeTruthy();
+      expect(project).toBeInstanceOf(Project);
     });
   });
 
@@ -43,7 +43,7 @@ describe("Test Project methods", () => {
     // expect(todos[todos.length - 1] instanceof Todo).toBeTruthy();
 
     todos.forEach(todo => {
-      expect(todo instanceof Todo).toBeTruthy();
+      expect(todo).toBeInstanceOf(Todo);
     });
   });
 

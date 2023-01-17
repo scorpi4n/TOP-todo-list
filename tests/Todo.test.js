@@ -40,9 +40,9 @@ describe("test Todo methods", () => {
 
   // read
   test("Todo.load returns array", () => {
-    expect(typeof Todo.load()).toBe(typeof []);
+    expect(Todo.load()).toBeInstanceOf(Array);
     localStorage.clear();
-    expect(typeof Todo.load()).toBe(typeof []);
+    expect(Todo.load()).toBeInstanceOf(Array);
   });
 
   // update
