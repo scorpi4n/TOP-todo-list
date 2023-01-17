@@ -55,19 +55,17 @@ export default class Project {
       return [];
     }
 
-    projects.forEach(project => {
-      let newProject = new Project(
+    projects = projects.map(project => {
+      project = new Project(
         project.name,
         project.category,
-        // todos aren't of class Todo right here - need to convert them
         project.todos,
         project.isCompleted,
         project.id
       );
 
-      let todos = newProject.todos;
-      todos.forEach(todo => {
-        let newTodo = new Todo(
+      project.todos = project.todos.map(todo => {
+        todo = new Todo(
           todo.name,
           todo.description,
           todo.category,
@@ -78,10 +76,10 @@ export default class Project {
           todo.isCompleted
         );
 
-        todos[todos.indexOf(todo)] = newTodo;
+        return todo;
       });
 
-      projects[projects.indexOf(project)] = newProject;
+      return project;
     });
 
     return projects;
