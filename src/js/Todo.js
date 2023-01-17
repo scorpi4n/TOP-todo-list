@@ -65,8 +65,8 @@ export default class Todo {
       return [];
     }
 
-    todos.forEach(todo => {
-      let tmp = new Todo(
+    todos = todos.map(todo => {
+      todo = new Todo(
         todo.name,
         todo.description,
         todo.category,
@@ -76,8 +76,8 @@ export default class Todo {
         todo.id,
         todo.isCompleted
       );
-      // replace each item with Todo object to append methods
-      todos[todos.indexOf(todo)] = tmp;
+
+      return todo;
     });
 
     return todos;
