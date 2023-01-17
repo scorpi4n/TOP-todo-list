@@ -68,13 +68,14 @@ export default class Project {
       let todos = newProject.todos;
       todos.forEach(todo => {
         let newTodo = new Todo(
-          todo.title,
+          todo.name,
           todo.description,
           todo.category,
           todo.dueDate,
           todo.priority,
-          todo.isCompleted,
-          todo.id
+          todo.projectId,
+          todo.id,
+          todo.isCompleted
         );
 
         todos[todos.indexOf(todo)] = newTodo;

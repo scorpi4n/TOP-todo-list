@@ -3,11 +3,13 @@ import Todo from "../src/js/Todo";
 
 describe("Test Project methods", () => {
   // setup and teardown
-  let testProject = Project.create("name", "category");
+  let testProject;
 
   beforeEach(() => {
     testProject = Project.create("name", "category");
-    testProject.addTodo(Todo.create("title", "desc", "cat", new Date(), 5));
+    testProject.addTodo(
+      Todo.create("name", "desc", "cat", new Date(), 5, testProject.id)
+    );
     Project.save([testProject]);
   });
 
@@ -36,7 +38,7 @@ describe("Test Project methods", () => {
   // test isn't working
   it("should load project's todos as Todo class", () => {
     const projects = Project.load();
-    const todos = projects[projects.length - 1].todos;
+    const todos = projects.at(-1).todos;
 
     // expect(todos[todos.length - 1] instanceof Todo).toBeTruthy();
 
