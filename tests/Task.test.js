@@ -5,18 +5,18 @@ describe("test Task methods", () => {
   let tasks;
   beforeEach(() => {
     tasks = [
-      Task.create("name1", "desc", "personal", new Date(), 1),
-      Task.create("name2", "description", "personal", new Date(), 2),
-      Task.create("name3", "described", "personal", new Date(), 3),
-      Task.create(
+      new Task("name1", "desc", "personal", new Date(), 1),
+      new Task("name2", "description", "personal", new Date(), 2),
+      new Task("name3", "described", "personal", new Date(), 3),
+      new Task(
         "name4",
         "make video: 'how to eat donuts'",
         "personal",
         new Date(),
         4
       ),
-      Task.create("name5", "getting lazy", "personal", new Date(), 5),
-      Task.create("name6", "example desc", "personal", new Date(), 1),
+      new Task("name5", "getting lazy", "personal", new Date(), 5),
+      new Task("name6", "example desc", "personal", new Date(), 1),
     ];
 
     Task.save(tasks);
@@ -28,7 +28,7 @@ describe("test Task methods", () => {
 
   // create
   test("create static method return value", () => {
-    const result = Task.create(
+    const result = new Task(
       "eat dinner",
       "eat with family",
       "personal",
@@ -59,7 +59,7 @@ describe("test Task methods", () => {
 
   // delete
   it("should remove the task", () => {
-    Task.load()[2].delete();
+    Task.load().at(2).delete();
     tasks.splice(2, 1);
     expect(Task.load()).toEqual(tasks);
   });

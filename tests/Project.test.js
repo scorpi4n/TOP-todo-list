@@ -3,14 +3,14 @@ import Task from "../src/js/Task";
 
 describe("Test Project methods", () => {
   // setup and teardown
-  let testProject;
+  let project;
 
   beforeEach(() => {
-    testProject = Project.create("name", "category");
-    testProject.addTask(
-      Task.create("name", "desc", "cat", new Date(), 5, testProject.id)
+    project = new Project("name", "category");
+    project.addTask(
+      new Task("name", "desc", "cat", new Date(), 5, project.name)
     );
-    Project.save([testProject]);
+    Project.save([project]);
   });
 
   afterEach(() => {
@@ -19,7 +19,7 @@ describe("Test Project methods", () => {
 
   // create
   test("create static method return value", () => {
-    expect(testProject).toBeInstanceOf(Project);
+    expect(project).toBeInstanceOf(Project);
   });
 
   // read
@@ -46,24 +46,22 @@ describe("Test Project methods", () => {
 
   // update
   it("should add one task to the project", () => {
-    testProject.addTask(
-      Task.create("title", "desc", "category", new Date(), 5)
-    );
-    expect(testProject.tasks.length).toBe(2);
+    project.addTask(new Task("title", "desc", "category", new Date(), 5));
+    expect(project.tasks.length).toBe(2);
   });
 
   it("should save array of projects to localStorage", () => {
-    Project.save([testProject]);
-    expect(Project.load().at(0)).toEqual(testProject);
+    Project.save([project]);
+    expect(Project.load().at(0)).toEqual(project);
   });
 
   it("should mark the project complete if all it's tasks are done", () => {
-    expect(testProject.isCompleted).toBeFalsy();
-    testProject.tasks.forEach(task => {
+    expect(project.isCompleted).toBeFalsy();
+    project.tasks.forEach(task => {
       task.complete();
     });
-    testProject.complete();
-    expect(testProject.isCompleted).toBeTruthy();
+    project.complete();
+    expect(project.isCompleted).toBeTruthy();
   });
 
   // delete

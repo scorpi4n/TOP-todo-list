@@ -1,19 +1,15 @@
-import { v4 as uuidv4 } from "uuid";
 import Task from "./Task";
 
 export default class Project {
-  constructor(name, category, tasks = [], isCompleted = false, id = uuidv4()) {
+  constructor(name, category, tasks = [], isCompleted = false) {
     this.name = name;
     this.category = category;
     this.tasks = tasks;
-    this.isCompleted = isCompleted;
-    this.id = id;
+    this._isCompleted = isCompleted;
   }
 
-  display() {
-    console.log(
-      `Name: ${this.name}\nCompleted: ${this.isCompleted}\nID: ${this.id}`
-    );
+  get isCompleted() {
+    return this._isCompleted;
   }
 
   complete() {
@@ -22,24 +18,26 @@ export default class Project {
       return !task.isCompleted;
     });
     if (!incompleteTasks.length) {
-      this.isCompleted = true;
+      this._isCompleted = true;
     } else {
       console.warn("not all tasks complete");
     }
   }
 
+  display() {
+    console.log(
+      `Name: ${this.name}\nCompleted: ${this.isCompleted}\nName: ${this.name}`
+    );
+  }
+
   delete() {
     return Project.load().filter(project => {
-      return project.id !== this.id;
+      return project.name !== this.name;
     });
   }
 
   addTask(task) {
     this.tasks.push(task);
-  }
-
-  static create(name, category) {
-    return new Project(name, category);
   }
 
   static save(projects) {
@@ -59,8 +57,7 @@ export default class Project {
         project.name,
         project.category,
         project.tasks,
-        project.isCompleted,
-        project.id
+        project.isCompleted
       );
 
       project.tasks = project.tasks.map(task => {
@@ -70,7 +67,7 @@ export default class Project {
           task.category,
           task.dueDate,
           task.priority,
-          task.projectId,
+          task.projectName,
           task.id,
           task.isCompleted
         );

@@ -1,15 +1,15 @@
-// would switch to crypto.randomUUID() but jest doesn't like it
 import { v4 as uuidv4 } from "uuid";
-import Project from "./Project";
 
 export default class Task {
+  #priority;
+
   constructor(
     name,
     description,
     category,
     dueDate,
     priority,
-    projectId = null,
+    projectName = null,
     id = uuidv4(),
     isCompleted = false
   ) {
@@ -18,7 +18,7 @@ export default class Task {
     this.category = category;
     this.dueDate = new Date(dueDate);
     this.priority = priority;
-    this.projectId = projectId;
+    this.projectName = projectName;
     this.id = id;
     this.isCompleted = isCompleted;
   }
@@ -27,10 +27,7 @@ export default class Task {
     console.log(
       `Name: ${this.name}\n
       Completed: ${this.isCompleted}\n
-      Project: ${
-        Project.load().filter(project => {
-          project.id == this.projectId;
-        }).name
+      Project: ${this.projectName})
       }`
     );
   }
@@ -47,14 +44,14 @@ export default class Task {
       return task.id !== this.id;
     });
     Task.save(tasks);
-  }
 
-  static create(name, description, category, dueDate, priority, projectId) {
-    return new Task(name, description, category, dueDate, priority, projectId);
+    return tasks;
   }
 
   static save(tasks) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    return tasks;
   }
 
   static load() {
@@ -72,7 +69,7 @@ export default class Task {
         task.category,
         task.dueDate,
         task.priority,
-        task.projectId,
+        task.projectName,
         task.id,
         task.isCompleted
       );
