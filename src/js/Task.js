@@ -2,7 +2,7 @@
 import { v4 as uuidv4 } from "uuid";
 import Project from "./Project";
 
-export default class Todo {
+export default class Task {
   constructor(
     name,
     description,
@@ -41,45 +41,45 @@ export default class Todo {
   }
 
   delete() {
-    let todos = Todo.load();
+    let tasks = Task.load();
     // filter out what we want deleted
-    todos = todos.filter(todo => {
-      return todo.id !== this.id;
+    tasks = tasks.filter(task => {
+      return task.id !== this.id;
     });
-    Todo.save(todos);
+    Task.save(tasks);
   }
 
   static create(name, description, category, dueDate, priority, projectId) {
-    return new Todo(name, description, category, dueDate, priority, projectId);
+    return new Task(name, description, category, dueDate, priority, projectId);
   }
 
-  static save(todos) {
-    localStorage.setItem("todos", JSON.stringify(todos));
+  static save(tasks) {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
   static load() {
-    let todos = JSON.parse(localStorage.getItem("todos"));
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
 
-    if (!todos) {
+    if (!tasks) {
       this.save([]);
       return [];
     }
 
-    todos = todos.map(todo => {
-      todo = new Todo(
-        todo.name,
-        todo.description,
-        todo.category,
-        todo.dueDate,
-        todo.priority,
-        todo.projectId,
-        todo.id,
-        todo.isCompleted
+    tasks = tasks.map(task => {
+      task = new Task(
+        task.name,
+        task.description,
+        task.category,
+        task.dueDate,
+        task.priority,
+        task.projectId,
+        task.id,
+        task.isCompleted
       );
 
-      return todo;
+      return task;
     });
 
-    return todos;
+    return tasks;
   }
 }

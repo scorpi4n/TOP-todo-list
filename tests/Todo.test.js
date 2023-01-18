@@ -1,25 +1,25 @@
-import Todo from "../src/js/Todo";
+import Task from "../src/js/Task";
 
-describe("test Todo methods", () => {
+describe("test Task methods", () => {
   // setup and teardown
-  let todos;
+  let tasks;
   beforeEach(() => {
-    todos = [
-      Todo.create("name1", "desc", "personal", new Date(), 1),
-      Todo.create("name2", "description", "personal", new Date(), 2),
-      Todo.create("name3", "described", "personal", new Date(), 3),
-      Todo.create(
+    tasks = [
+      Task.create("name1", "desc", "personal", new Date(), 1),
+      Task.create("name2", "description", "personal", new Date(), 2),
+      Task.create("name3", "described", "personal", new Date(), 3),
+      Task.create(
         "name4",
         "make video: 'how to eat donuts'",
         "personal",
         new Date(),
         4
       ),
-      Todo.create("name5", "getting lazy", "personal", new Date(), 5),
-      Todo.create("name6", "example desc", "personal", new Date(), 1),
+      Task.create("name5", "getting lazy", "personal", new Date(), 5),
+      Task.create("name6", "example desc", "personal", new Date(), 1),
     ];
 
-    Todo.save(todos);
+    Task.save(tasks);
   });
 
   afterEach(() => {
@@ -28,39 +28,39 @@ describe("test Todo methods", () => {
 
   // create
   test("create static method return value", () => {
-    const result = Todo.create(
+    const result = Task.create(
       "eat dinner",
       "eat with family",
       "personal",
       new Date(),
       5
     );
-    expect(result instanceof Todo).toBeTruthy();
+    expect(result instanceof Task).toBeTruthy();
   });
 
   // read
-  test("Todo.load returns array", () => {
-    expect(Todo.load()).toBeInstanceOf(Array);
+  test("Task.load returns array", () => {
+    expect(Task.load()).toBeInstanceOf(Array);
     localStorage.clear();
-    expect(Todo.load()).toBeInstanceOf(Array);
+    expect(Task.load()).toBeInstanceOf(Array);
   });
 
   // update
-  it("should save an array of Todos", () => {
-    Todo.save(todos);
-    expect(Todo.load()).toEqual(todos);
+  it("should save an array of Tasks", () => {
+    Task.save(tasks);
+    expect(Task.load()).toEqual(tasks);
   });
 
   it("should set isCompleted to true", () => {
-    todos.at(3).complete();
-    Todo.save(todos);
-    expect(Todo.load().at(3).isCompleted).toBeTruthy();
+    tasks.at(3).complete();
+    Task.save(tasks);
+    expect(Task.load().at(3).isCompleted).toBeTruthy();
   });
 
   // delete
-  it("should remove the todo", () => {
-    Todo.load()[2].delete();
-    todos.splice(2, 1);
-    expect(Todo.load()).toEqual(todos);
+  it("should remove the task", () => {
+    Task.load()[2].delete();
+    tasks.splice(2, 1);
+    expect(Task.load()).toEqual(tasks);
   });
 });

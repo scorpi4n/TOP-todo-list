@@ -1,5 +1,5 @@
 import Project from "../src/js/Project";
-import Todo from "../src/js/Todo";
+import Task from "../src/js/Task";
 
 describe("Test Project methods", () => {
   // setup and teardown
@@ -7,8 +7,8 @@ describe("Test Project methods", () => {
 
   beforeEach(() => {
     testProject = Project.create("name", "category");
-    testProject.addTodo(
-      Todo.create("name", "desc", "cat", new Date(), 5, testProject.id)
+    testProject.addTask(
+      Task.create("name", "desc", "cat", new Date(), 5, testProject.id)
     );
     Project.save([testProject]);
   });
@@ -23,7 +23,7 @@ describe("Test Project methods", () => {
   });
 
   // read
-  it("should load an array of todos from localStorage", () => {
+  it("should load an array of tasks from localStorage", () => {
     expect(Project.load()).toBeInstanceOf(Array);
   });
 
@@ -35,21 +35,21 @@ describe("Test Project methods", () => {
     });
   });
 
-  it("should load project's todos as Todo class", () => {
+  it("should load project's tasks as Task class", () => {
     const projects = Project.load();
-    const todos = projects.at(-1).todos;
+    const tasks = projects.at(-1).tasks;
 
-    todos.forEach(todo => {
-      expect(todo).toBeInstanceOf(Todo);
+    tasks.forEach(task => {
+      expect(task).toBeInstanceOf(Task);
     });
   });
 
   // update
-  it("should add one todo to the project", () => {
-    testProject.addTodo(
-      Todo.create("title", "desc", "category", new Date(), 5)
+  it("should add one task to the project", () => {
+    testProject.addTask(
+      Task.create("title", "desc", "category", new Date(), 5)
     );
-    expect(testProject.todos.length).toBe(2);
+    expect(testProject.tasks.length).toBe(2);
   });
 
   it("should save array of projects to localStorage", () => {
@@ -57,10 +57,10 @@ describe("Test Project methods", () => {
     expect(Project.load().at(0)).toEqual(testProject);
   });
 
-  it("should mark the project complete if all it's todos are done", () => {
+  it("should mark the project complete if all it's tasks are done", () => {
     expect(testProject.isCompleted).toBeFalsy();
-    testProject.todos.forEach(todo => {
-      todo.complete();
+    testProject.tasks.forEach(task => {
+      task.complete();
     });
     testProject.complete();
     expect(testProject.isCompleted).toBeTruthy();

@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
-import Todo from "./Todo";
+import Task from "./Task";
 
 export default class Project {
-  constructor(name, category, todos = [], isCompleted = false, id = uuidv4()) {
+  constructor(name, category, tasks = [], isCompleted = false, id = uuidv4()) {
     this.name = name;
     this.category = category;
-    this.todos = todos;
+    this.tasks = tasks;
     this.isCompleted = isCompleted;
     this.id = id;
   }
@@ -17,14 +17,14 @@ export default class Project {
   }
 
   complete() {
-    // validate that no todos in a project are incomplete before marking the project complete
-    const incompleteTodos = this.todos.filter(todo => {
-      return !todo.isCompleted;
+    // validate that no tasks in a project are incomplete before marking the project complete
+    const incompleteTasks = this.tasks.filter(task => {
+      return !task.isCompleted;
     });
-    if (!incompleteTodos.length) {
+    if (!incompleteTasks.length) {
       this.isCompleted = true;
     } else {
-      console.warn("not all todos complete");
+      console.warn("not all tasks complete");
     }
   }
 
@@ -34,8 +34,8 @@ export default class Project {
     });
   }
 
-  addTodo(todo) {
-    this.todos.push(todo);
+  addTask(task) {
+    this.tasks.push(task);
   }
 
   static create(name, category) {
@@ -58,24 +58,24 @@ export default class Project {
       project = new Project(
         project.name,
         project.category,
-        project.todos,
+        project.tasks,
         project.isCompleted,
         project.id
       );
 
-      project.todos = project.todos.map(todo => {
-        todo = new Todo(
-          todo.name,
-          todo.description,
-          todo.category,
-          todo.dueDate,
-          todo.priority,
-          todo.projectId,
-          todo.id,
-          todo.isCompleted
+      project.tasks = project.tasks.map(task => {
+        task = new Task(
+          task.name,
+          task.description,
+          task.category,
+          task.dueDate,
+          task.priority,
+          task.projectId,
+          task.id,
+          task.isCompleted
         );
 
-        return todo;
+        return task;
       });
 
       return project;
