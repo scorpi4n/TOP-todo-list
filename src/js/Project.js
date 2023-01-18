@@ -30,7 +30,7 @@ export default class Project {
 
   delete() {
     return Project.load().filter(project => {
-      project.id !== this.id;
+      return project.id !== this.id;
     });
   }
 
@@ -49,7 +49,7 @@ export default class Project {
   static load() {
     let projects = JSON.parse(localStorage.getItem("projects"));
 
-    if (!projects) {
+    if (!projects.length) {
       this.save([]);
       return [];
     }
