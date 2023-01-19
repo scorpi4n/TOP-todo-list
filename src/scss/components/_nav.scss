@@ -6,6 +6,10 @@ nav {
   align-items: flex-start;
   padding: 0.5rem 1rem;
 
+  & > div {
+    width: 100%;
+  }
+
   ul {
     font-size: 1.125rem;
   }
@@ -16,7 +20,7 @@ nav {
     }
   }
 
-  span:not(.logo) {
+  p:not(.logo) {
     font-size: 1.25rem;
     font-weight: bold;
   }
