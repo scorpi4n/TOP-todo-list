@@ -1,0 +1,28 @@
+@use "../abstracts" as *;
+
+nav {
+  @include flex(column);
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.5rem 1rem;
+
+  ul {
+    font-size: 1.125rem;
+  }
+
+  ul.upcoming-tasks {
+    li:not(:last-of-type) {
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  span:not(.logo) {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  footer {
+    min-width: 100%;
+    text-align: center;
+  }
+}
