@@ -1,0 +1,6 @@
+@use "../abstracts" as *;
+
+body {
+  @include grid;
+  grid-template-columns: max-content 1fr;
+}
