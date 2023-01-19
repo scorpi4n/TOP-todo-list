@@ -2,5 +2,5 @@
 
 body {
   @include grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: minmax(max-content, 20vw) 1fr;
 }

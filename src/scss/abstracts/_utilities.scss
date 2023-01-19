@@ -14,6 +14,21 @@
   min-width: 100%;
 }
 
+.dropdown {
+  margin-bottom: 0.5rem;
+
+  ul {
+    display: none;
+    margin-left: 1rem;
+  }
+
+  &.active {
+    ul {
+      display: block;
+    }
+  }
+}
+
 // generated utility classes
 @each $color, $shades in $colors {
   @each $shade, $value in $shades {
