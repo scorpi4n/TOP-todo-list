@@ -1,0 +1,38 @@
+@use "../abstracts" as *;
+
+.task-list {
+  padding-block: 1rem;
+
+  .title {
+    padding-left: 2.5rem;
+  }
+}
+
+ul.tasks {
+  @include grid;
+  grid-template-columns: repeat(1, minmax(max-content, 900px));
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1rem 4rem;
+
+  .task {
+    $padding: 1.5rem;
+
+    @include flex(row);
+    justify-content: flex-start;
+    gap: $padding;
+    padding-left: $padding;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    button {
+      padding: calc($padding * (2 / 3)) $padding;
+      margin-left: auto;
+      background-color: map-get($colors, "green", 400);
+
+      &:hover {
+        background-color: map-get($colors, "green", 600);
+      }
+    }
+  }
+}
