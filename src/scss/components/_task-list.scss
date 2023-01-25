@@ -25,8 +25,24 @@ ul.tasks {
     border-radius: 1rem;
     overflow: hidden;
 
+    form {
+      @include flex(row);
+      justify-content: flex-start;
+      gap: $padding;
+
+      input {
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1ch;
+
+        &[type="number"] {
+          appearance: textfield;
+        }
+      }
+    }
+
     button {
-      padding: calc($padding * (2 / 3)) $padding;
+      padding: 1rem $padding;
       margin-left: auto;
       background-color: map-get($colors, "green", 400);
 
