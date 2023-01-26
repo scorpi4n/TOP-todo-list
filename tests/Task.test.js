@@ -2,7 +2,6 @@ import Task from "../src/modules/Task";
 
 // setup and teardown
 let testTasks;
-let returnValue;
 beforeEach(() => {
   testTasks = [
     new Task("name1", "desc", new Date(), 1),
