@@ -1,10 +1,10 @@
+// CURRENTLY BROKEN
+
 import Task from "./Task";
 
 export default class Project {
-  constructor(name, category, tasks = [], isCompleted = false) {
+  constructor(name, isCompleted = false) {
     this.name = name;
-    this.category = category;
-    this.tasks = tasks;
     this._isCompleted = isCompleted;
   }
 
@@ -14,9 +14,7 @@ export default class Project {
 
   complete() {
     // validate that no tasks in a project are incomplete before marking the project complete
-    const incompleteTasks = this.tasks.filter(task => {
-      return !task.isCompleted;
-    });
+    const incompleteTasks = Task.load().filter(task => !task.isCompleted);
     if (!incompleteTasks.length) {
       this._isCompleted = true;
     } else {
@@ -26,18 +24,30 @@ export default class Project {
 
   display() {
     console.log(
-      `Name: ${this.name}\nCompleted: ${this.isCompleted}\nName: ${this.name}`
+      `Name: ${this.name}\n
+      Completed: ${this.isCompleted}\n
+      Name: ${this.name}`
     );
   }
 
   delete() {
-    return Project.load().filter(project => {
+    let projects = Project.load();
+
+    const filteredProjects = projects.filter(project => {
       return project.name !== this.name;
     });
+    Project.save(filteredProjects);
+
+    const deletedProject = projects.find(project => project.name === this.name);
+
+    return deletedProject;
   }
 
-  addTask(task) {
-    this.tasks.push(task);
+  addTask(taskId) {
+    let tasks = Task.load();
+    let task = tasks.filter(task => taskId === task.id);
+
+    task.projectName = this.name;
   }
 
   static save(projects) {
@@ -53,27 +63,7 @@ export default class Project {
     }
 
     projects = projects.map(project => {
-      project = new Project(
-        project.name,
-        project.category,
-        project.tasks,
-        project.isCompleted
-      );
-
-      project.tasks = project.tasks.map(task => {
-        task = new Task(
-          task.name,
-          task.description,
-          task.category,
-          task.dueDate,
-          task.priority,
-          task.projectName,
-          task.id,
-          task.isCompleted
-        );
-
-        return task;
-      });
+      project = new Project(project.name, project.isCompleted);
 
       return project;
     });
