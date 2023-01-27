@@ -46,6 +46,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "date-fns": "^2.29.3"
   }
 }
