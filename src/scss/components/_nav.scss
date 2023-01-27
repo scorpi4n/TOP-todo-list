@@ -6,6 +6,12 @@ nav {
   align-items: flex-start;
   padding: 0.5rem 1rem;
 
+  .logo {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+
   & > div {
     width: 100%;
   }
