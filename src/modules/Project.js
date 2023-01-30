@@ -1,5 +1,3 @@
-// CURRENTLY BROKEN
-
 import Task from "./Task";
 
 export default class Project {
@@ -17,8 +15,10 @@ export default class Project {
     const incompleteTasks = Task.load().filter(task => !task.isCompleted);
     if (!incompleteTasks.length) {
       this._isCompleted = true;
+      return true;
     } else {
       console.warn("not all tasks complete");
+      return false;
     }
   }
 
