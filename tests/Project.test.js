@@ -1,64 +1,54 @@
-import Project from "../src/js/Project";
-import Todo from "../src/js/Todo";
+import Project from "../src/modules/Project";
+import Task from "../src/modules/Task";
 
-describe("Test Project methods", () => {
-  // setup and teardown
-  let testProject;
+// setup and teardown
+let testProject;
+beforeEach(() => {
+  testProject = new Project("project1");
 
-  beforeEach(() => {
-    testProject = Project.create("name", "category");
-    testProject.addTodo(
-      Todo.create("name", "desc", "cat", new Date(), 5, testProject.id)
-    );
-    Project.save([testProject]);
-  });
-
-  afterEach(() => {
-    localStorage.clear();
-  });
-
-  // create
-  test("create static method return value", () => {
-    expect(testProject instanceof Project).toBeTruthy();
-  });
-
-  // read
-  it("should load an array of todos from localStorage", () => {
-    expect(typeof Project.load()).toEqual(typeof []);
-  });
-
-  it("should load projects as Project class", () => {
-    const projects = Project.load();
-
-    projects.forEach(project => {
-      expect(project instanceof Project).toBeTruthy();
-    });
-  });
-
-  // test isn't working
-  it("should load project's todos as Todo class", () => {
-    const projects = Project.load();
-    const todos = projects.at(-1).todos;
-
-    // expect(todos[todos.length - 1] instanceof Todo).toBeTruthy();
-
-    todos.forEach(todo => {
-      expect(todo instanceof Todo).toBeTruthy();
-    });
-  });
-
-  // update
-  it("should add one todo to the project", () => {
-    testProject.addTodo(
-      Todo.create("title", "desc", "category", new Date(), 5)
-    );
-    expect(testProject.todos.length).toBe(2);
-  });
-
-  it("should save array of projects to localStorage", () => {
-    Project.save([testProject]);
-    expect(Project.load().at(0)).toEqual(testProject);
-  });
-
-  // delete
+  Task.save([
+    new Task("name1", "desc", new Date(), 5, "project1"),
+    new Task("name2", "description", new Date(), 3, "project1"),
+  ]);
 });
+
+describe(".complete instance method", () => {
+  it("should mark not the project complete", () => {
+    testProject.complete();
+    expect(testProject.isCompleted).toBeFalsy();
+  });
+
+  it("should mark the project complete", () => {
+    const completedTasks = Task.load().map(task => task.complete());
+    Task.save(completedTasks);
+    Task.load().forEach(task => console.log(task.isCompleted));
+
+    testProject.complete();
+    expect(testProject.isCompleted).toBeTruthy();
+  });
+});
+
+describe(".delete instance method", () => {
+  beforeEach(() => Project.save([testProject]));
+
+  it("should remove the project from localStorage", () => {
+    testProject.delete();
+    expect(JSON.parse(localStorage.getItem("projects"))).toHaveLength(0);
+  });
+
+  it("should return the deleted project", () => {
+    expect(testProject.delete()).toEqual(testProject);
+  });
+});
+
+// describe(".addTask instance method", () => {
+//   it("should ", () => {});
+// });
+
+// describe(".save static method", () => {
+//   it("should ", () => {});
+// });
+
+// describe(".load static method", () => {
+//   it("should ", () => {});
+// });
