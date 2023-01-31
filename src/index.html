@@ -1,61 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listo</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Listo</title>
-</head>
-
-<body>
-  <nav class="bg-neutral-300 text-neutral-900">
-    <div>
-      <span class="logo">Listo</span>
-      <div class="divider"></div>
-      <ul class="upcoming-tasks">
-        <li>Due Today</li>
-        <li>Due Soon</li>
-      </ul>
-      <div class="divider"></div>
+  <body>
+    <nav class="bg-neutral-300 text-neutral-900">
+      <div>
+        <span class="logo">Listo</span>
+        <div class="divider"></div>
+        <ul class="upcoming-tasks">
+          <li>Due Today</li>
+          <li>Due Soon</li>
+        </ul>
+        <div class="divider"></div>
+      </div>
+      <footer>
+        <div class="divider"></div>
+        &copy; Luci 2023
+      </footer>
+    </nav>
+    <div class="task-list">
+      <table>
+        <caption class="title">
+          Migrate Database
+        </caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="tasks"></tbody>
+      </table>
     </div>
-    <footer>
-      <div class="divider"></div>
-      &copy; Luci 2023
-    </footer>
-  </nav>
-  <div class="task-list">
-    <h1 class="title">Migrate Database</h1>
-    <ul class="tasks">
-      <!-- <li class="task bg-neutral-900 text-neutral-200">
-        <form action="#" method="get">
-          <label for="task-name">
-            Task:
-            <input class="bg-neutral-700 text-neutral-200" id="task-name" type="text" required>
-          </label>
-          <label for="task-priority">
-            Priority:
-            <input class="bg-neutral-700 text-neutral-200" id="task-priority" type="number" required min="1" max="5">
-          </label>
-          <label for="task-date">
-            Due:
-            <input class="bg-neutral-700 text-neutral-200" id="task-date" type="date" required min="Today">
-          </label>
-          <button>Create</button>
-        </form>
-      </li> -->
-      <li class="task bg-neutral-900 text-neutral-200">
-        <div>
-          <p class="task-name">Create new schema</p>
-          <div class="task-info">
-            <p>Priority: 5</p>
-            <p>Due: 2023/01/25</p>
-          </div>
-        </div>
-        <button>Complete</button>
-      </li>
-    </ul>
-  </div>
-</body>
-
+  </body>
 </html>
