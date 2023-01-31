@@ -1,34 +1,20 @@
 import { format } from "date-fns";
+import { button, createElementWithClass, td } from "../modules/domHelpers";
 
-export default function (name, priority, dueDate) {
-  const priorityEl = document.createElement("p");
-  priorityEl.innerText = `Priority: ${priority}`;
-
-  const dueDateEl = document.createElement("p");
-  dueDateEl.innerText = `Due: ${format(dueDate, "P")}`;
-
-  const infoEl = document.createElement("div");
-  infoEl.classList.add("task-info");
-  infoEl.appendChild(priorityEl);
-  infoEl.appendChild(dueDateEl);
-
-  const nameEl = document.createElement("p");
-  nameEl.classList.add("task-name");
+export default function (name, dueDate) {
+  const nameEl = createElementWithClass("th", "task-name");
   nameEl.innerText = name;
 
-  const wrapperEl = document.createElement("div");
-  wrapperEl.appendChild(nameEl);
-  wrapperEl.appendChild(infoEl);
+  const dueDateEl = td(`Due: ${format(dueDate, "P")}`);
 
-  const completeBtnEl = document.createElement("button");
-  completeBtnEl.innerText = "Complete";
-  // completeBtnEl.addEventListener
+  const btnEl = button("Complete");
+  btnEl.classList.add("bg-green-400", "text-neutral-200");
 
-  const taskEl = document.createElement("li");
-  taskEl.classList.add("task", "bg-neutral-900", "text-neutral-200");
+  const btnWrapperEl = td();
+  btnWrapperEl.appendChild(btnEl);
 
-  taskEl.appendChild(wrapperEl);
-  taskEl.appendChild(completeBtnEl);
+  const taskEl = createElementWithClass("tr", "task");
+  taskEl.appendChildren(nameEl, dueDateEl, btnWrapperEl);
 
   return taskEl;
 }
