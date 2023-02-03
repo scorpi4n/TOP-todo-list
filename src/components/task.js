@@ -8,7 +8,6 @@ export default function (name, dueDate) {
   const dueDateEl = td(`Due: ${format(dueDate, "P")}`);
 
   const btnEl = button("Complete");
-  btnEl.classList.add("bg-green-400", "text-neutral-200");
 
   const btnWrapperEl = td();
   btnWrapperEl.appendChild(btnEl);
