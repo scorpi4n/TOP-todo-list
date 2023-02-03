@@ -46,6 +46,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@picocss/pico": "^1.5.7",
     "date-fns": "^2.29.3",
     "uuid": "^9.0.0"
   }

@@ -1,4 +1,32 @@
-@use "base/reset";
+// CTL CLICK TO VIEW COLOR NAMES
+// @use "@picocss/pico/scss/themes/default/colors" as *;
+
+// customize theme here
 @use "abstracts";
+@use "@picocss/pico/scss/pico" with (
+  // greens
+  $primary-50: map-get(abstracts.$colors, "green", 50),
+  $primary-100: map-get(abstracts.$colors, "green", 100),
+  $primary-200: map-get(abstracts.$colors, "green", 200),
+  $primary-300: map-get(abstracts.$colors, "green", 300),
+  $primary-400: map-get(abstracts.$colors, "green", 400),
+  $primary-500: map-get(abstracts.$colors, "green", 500),
+  $primary-600: map-get(abstracts.$colors, "green", 600),
+  $primary-700: map-get(abstracts.$colors, "green", 700),
+  $primary-800: map-get(abstracts.$colors, "green", 800),
+  $primary-900: map-get(abstracts.$colors, "green", 900),
+  // greys
+  $grey-50: map-get(abstracts.$colors, "neutral", 50),
+  $grey-100: map-get(abstracts.$colors, "neutral", 100),
+  $grey-200: map-get(abstracts.$colors, "neutral", 200),
+  $grey-300: map-get(abstracts.$colors, "neutral", 300),
+  $grey-400: map-get(abstracts.$colors, "neutral", 400),
+  $grey-500: map-get(abstracts.$colors, "neutral", 500),
+  $grey-600: map-get(abstracts.$colors, "neutral", 600),
+  $grey-700: map-get(abstracts.$colors, "neutral", 700),
+  $grey-800: map-get(abstracts.$colors, "neutral", 800),
+  $grey-900: map-get(abstracts.$colors, "neutral", 900)
+);
+
+@use "base";
 @use "components";
-@use "layouts/main";
