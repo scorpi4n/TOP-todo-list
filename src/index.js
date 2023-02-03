@@ -1,11 +1,12 @@
-import dropdown from "./components/dropdown";
+// import dropdown from "./components/dropdown";
 import task from "./components/task";
-import { sidebar, tasks } from "./modules/domElements";
+import { navbar, tasks } from "./modules/domElements";
 import "./scss/style.scss";
 
-sidebar.appendChild(
-  dropdown("Projects", "Migrate database", "Build dream house")
-);
+navbar;
+// navbar.appendChild(
+//   dropdown("Projects", "Migrate database", "Build dream house")
+// );
 
 tasks.appendChildren(
   task("name", new Date()),

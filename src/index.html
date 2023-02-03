@@ -8,35 +8,31 @@
   </head>
 
   <body>
-    <nav class="bg-neutral-300 text-neutral-900">
-      <div>
-        <span class="logo">Listo</span>
-        <div class="divider"></div>
-        <ul class="upcoming-tasks">
-          <li>Due Today</li>
-          <li>Due Soon</li>
-        </ul>
-        <div class="divider"></div>
-      </div>
-      <footer>
-        <div class="divider"></div>
-        &copy; Luci 2023
-      </footer>
+    <nav class="container-fluid">
+      <ul>
+        <li class="logo">Listo</li>
+      </ul>
+      <ul class="upcoming-tasks">
+        <li>Due Today</li>
+        <li>Due Soon</li>
+      </ul>
     </nav>
-    <div class="task-list">
-      <table>
-        <caption class="title">
-          Migrate Database
-        </caption>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody class="tasks"></tbody>
-      </table>
-    </div>
+    <main>
+      <div class="task-list container">
+        <table>
+          <caption class="title">
+            Migrate Database
+          </caption>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="tasks"></tbody>
+        </table>
+      </div>
+    </main>
   </body>
 </html>
