@@ -1,6 +1,6 @@
 // import dropdown from "./components/dropdown";
 import task from "./components/task";
-import { navbar, tasks } from "./modules/domElements";
+import { navbar, tasks } from "./js/domElements";
 import "./scss/style.scss";
 
 navbar;
