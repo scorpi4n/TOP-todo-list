@@ -1,25 +1,32 @@
 export default function (title, ...dropdownItems) {
-  const dropdownEl = document.createElement("div");
-  dropdownEl.classList.add("dropdown");
+  const dropdownWrapperEl = document.createElement("li");
 
-  const buttonEl = document.createElement("button");
-  const titleEl = document.createElement("p");
+  const dropdownEl = document.createElement("details");
+  dropdownEl.setAttribute("role", "list");
+  dropdownEl.dir = "rtl";
+
+  const titleEl = document.createElement("summary");
   titleEl.innerText = title;
-  buttonEl.appendChild(titleEl);
-  buttonEl.addEventListener("click", () => {
-    dropdownEl.classList.toggle("active");
-  });
+  titleEl.setAttribute("aria-haspopup", "listbox");
+  titleEl.setAttribute("role", "link");
 
-  const listEl = document.createElement("ul");
+  const listboxEl = document.createElement("ul");
+  listboxEl.setAttribute("role", "listbox");
   dropdownItems.forEach(item => {
-    const itemEl = document.createElement("li");
-    itemEl.innerText = item;
+    const button = document.createElement("button");
+    button.classList.add("outline", "contrast");
+    button.innerText = item;
 
-    listEl.appendChild(itemEl);
+    const li = document.createElement("li");
+    li.appendChild(button);
+
+    listboxEl.appendChild(li);
   });
 
-  dropdownEl.appendChild(buttonEl);
-  dropdownEl.appendChild(listEl);
+  dropdownEl.appendChild(titleEl);
+  dropdownEl.appendChild(listboxEl);
 
-  return dropdownEl;
+  dropdownWrapperEl.appendChild(dropdownEl);
+
+  return dropdownWrapperEl;
 }
