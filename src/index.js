@@ -1,13 +1,12 @@
-// import dropdown from "./components/dropdown";
+import dropdown from "./components/dropdown";
 import task from "./components/task";
-import { navbar, tasks } from "./js/domElements";
+import { tasks, upcomingTasks } from "./js/domElements";
 import Task from "./js/Task";
 import "./scss/style.scss";
 
-navbar;
-// navbar.appendChild(
-//   dropdown("Projects", "Migrate database", "Build dream house")
-// );
+upcomingTasks.appendChild(
+  dropdown("Projects", "Migrate database", "Build dream house")
+);
 
 // UNCOMMENT TO RESET TASKS IN LOCALSTORAGE AND RECOMMENT ONCE DONE
 //
