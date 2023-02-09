@@ -12,11 +12,16 @@
       <ul>
         <li class="logo">Listo</li>
       </ul>
-      <ul class="upcoming-tasks">
-        <li><button class="outline contrast">Due Today</button></li>
-        <li><button class="outline contrast">Due Soon</button></li>
+      <ul class="filters">
+        <li>
+          <button class="outline contrast">Due Today</button>
+        </li>
+        <li>
+          <button class="outline contrast">Due Soon</button>
+        </li>
       </ul>
     </nav>
+
     <main>
       <div class="task-list container">
         <table>
@@ -27,7 +32,7 @@
             <tr>
               <th>Name</th>
               <th>Date</th>
-              <th></th>
+              <th><button id="new-task">New Task</button></th>
             </tr>
           </thead>
           <tbody class="tasks"></tbody>

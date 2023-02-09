@@ -1,10 +1,10 @@
 import dropdown from "./components/dropdown";
-import { upcomingTasks } from "./js/domElements";
+import { filters } from "./js/domElements";
 import Task from "./js/Task";
 import { filterTasks, renderTasks } from "./js/utils";
 import "./scss/style.scss";
 
-upcomingTasks.appendChild(
+filters.appendChild(
   dropdown("Projects", "Migrate database", "Build dream house")
 );
 
