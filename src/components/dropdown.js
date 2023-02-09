@@ -1,3 +1,6 @@
+import Task from "../js/Task";
+import { filterTasks, renderTasks } from "../js/utils";
+
 export default function (title, ...dropdownItems) {
   const dropdownWrapperEl = document.createElement("li");
 
@@ -16,6 +19,7 @@ export default function (title, ...dropdownItems) {
     const button = document.createElement("button");
     button.classList.add("outline", "contrast");
     button.innerText = item;
+    button.addEventListener("click", handleClick.bind(null, item));
 
     const li = document.createElement("li");
     li.appendChild(button);
@@ -29,4 +33,10 @@ export default function (title, ...dropdownItems) {
   dropdownWrapperEl.appendChild(dropdownEl);
 
   return dropdownWrapperEl;
+}
+
+function handleClick(projectName) {
+  let tasks = Task.load();
+  let filteredTasks = filterTasks(tasks, { project: projectName });
+  renderTasks(filteredTasks);
 }
