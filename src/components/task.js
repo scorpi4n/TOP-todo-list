@@ -2,7 +2,9 @@ import { format } from "date-fns";
 import { button, createElementWithClass, td } from "../js/domHelpers";
 import Task from "../js/Task";
 
-export default function (name, dueDate) {
+export default function (task) {
+  const { name, dueDate } = task;
+
   const nameEl = createElementWithClass("th", "task-name");
   nameEl.innerText = name;
 
