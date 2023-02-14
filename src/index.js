@@ -1,7 +1,7 @@
 import dropdown from "./components/dropdown";
-import { filters } from "./js/domElements";
+import { filters, newTaskBtn, newTaskModal } from "./js/domElements";
 import Task from "./js/Task";
-import { filterTasks, renderTasks } from "./js/utils";
+import { filterTasks, renderTasks, toggleModal } from "./js/utils";
 import "./scss/style.scss";
 
 filters.appendChild(
@@ -21,3 +21,8 @@ filters.appendChild(
 let tasks = Task.load();
 let filteredTasks = filterTasks(tasks);
 renderTasks(filteredTasks);
+
+// toggleModal using buttons in array
+[newTaskBtn, document.querySelector("#close-modal")].forEach(item => {
+  item.addEventListener("click", toggleModal.bind(null, newTaskModal));
+});
