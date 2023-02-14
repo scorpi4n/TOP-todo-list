@@ -1,0 +1,14 @@
+@use "../abstracts/mixins";
+
+#example-modal {
+  footer {
+    @include mixins.flex(row);
+    gap: 1.5rem;
+
+    button {
+      display: inline-block;
+      width: unset;
+      flex-basis: 100%;
+    }
+  }
+}
