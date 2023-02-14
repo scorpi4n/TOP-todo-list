@@ -1,5 +1,5 @@
 import task from "../components/task";
-import { tasks as tasksEl } from "./domElements";
+import { newTaskModal, tasks as tasksEl } from "./domElements";
 
 export function renderTasks(tasks) {
   tasksEl.innerHTML = "";
@@ -39,4 +39,8 @@ export function filterTasks(
   // sorting
 
   return tasks;
+}
+
+export function toggleModal(modal = newTaskModal) {
+  modal.toggleAttribute("open");
 }
