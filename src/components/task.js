@@ -3,7 +3,7 @@ import { button, createElementWithClass, td } from "../js/domHelpers";
 import Task from "../js/Task";
 
 export default function (task) {
-  const { name, dueDate } = task;
+  const { name, dueDate, description } = task;
 
   const nameEl = createElementWithClass("th", "task-name");
   nameEl.innerText = name;
@@ -18,6 +18,7 @@ export default function (task) {
   btnWrapperEl.appendChild(btnEl);
 
   const taskEl = createElementWithClass("tr", "task");
+  taskEl.setAttribute("title", description);
   taskEl.appendChildren(nameEl, dueDateEl, btnWrapperEl);
 
   return taskEl;

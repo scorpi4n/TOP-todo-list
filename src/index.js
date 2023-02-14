@@ -5,13 +5,25 @@ import { filterTasks, getProjects, renderTasks, toggleModal } from "./js/utils";
 import "./scss/style.scss";
 
 // UNCOMMENT TO RESET TASKS IN LOCALSTORAGE AND RECOMMENT ONCE DONE
-//
+
 // localStorage.clear();
 // Task.save([
 //   new Task("name", "short desc", new Date(), 5, "Migrate Database"),
-//   new Task("NAME", "short desc", new Date(), 5, "Migrate Database"),
-//   new Task("not v creative", "short desc", new Date(), 5, "Migrate Database"),
-//   new Task(":3", "short desc", new Date(), 5, "build dream house"),
+//   new Task("NAME", "i hate this", new Date(), 5, "Migrate Database"),
+//   new Task(
+//     "not v creative",
+//     "i shouldve done this sooner",
+//     new Date(),
+//     5,
+//     "Migrate Database"
+//   ),
+//   new Task(
+//     ":3",
+//     "longer description goes here because this task has a short name",
+//     new Date(),
+//     5,
+//     "build dream house"
+//   ),
 // ]);
 
 let tasks = Task.load();
