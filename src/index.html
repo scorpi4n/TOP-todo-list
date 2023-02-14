@@ -32,12 +32,63 @@
             <tr>
               <th>Name</th>
               <th>Date</th>
-              <th><button id="new-task">New Task</button></th>
+              <th>
+                <button id="new-task">New Task</button>
+              </th>
             </tr>
           </thead>
           <tbody class="tasks"></tbody>
         </table>
       </div>
     </main>
+
+    <dialog open id="example-modal">
+      <article>
+        <header>
+          <p>New Task</p>
+        </header>
+        <form id="task-form" action="#" method="dialog">
+          <label for="task-name">
+            Name:
+            <input name="name" type="text" id="task-name" />
+          </label>
+          <div class="grid">
+            <label for="task-date">
+              Due Date:
+              <input type="date" name="date" id="task-date" />
+            </label>
+            <label for="task-priority">
+              Priority:
+              <input
+                type="number"
+                name="priority"
+                id="task-priority"
+                min="1"
+                max="5"
+              />
+            </label>
+          </div>
+          <label for="task-project">
+            Project:
+            <input type="text" name="project" id="task-project" />
+          </label>
+          <label for="task-description">
+            Description:
+            <textarea name="description" id="task-description"></textarea>
+          </label>
+        </form>
+        <footer>
+          <button
+            form="task-form"
+            type="reset"
+            id="close-modal"
+            class="secondary"
+          >
+            Cancel
+          </button>
+          <button type="submit" form="task-form">Submit</button>
+        </footer>
+      </article>
+    </dialog>
   </body>
 </html>
