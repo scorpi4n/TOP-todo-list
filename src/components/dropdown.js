@@ -15,6 +15,16 @@ export default function (title, ...dropdownItems) {
 
   const listboxEl = document.createElement("ul");
   listboxEl.setAttribute("role", "listbox");
+
+  // Add filter for all projects before adding each individual project
+  const button = document.createElement("button");
+  button.classList.add("outline", "contrast");
+  button.innerText = "All projects";
+  button.addEventListener("click", () => renderTasks(Task.load()));
+  const li = document.createElement("li");
+  li.appendChild(button);
+  listboxEl.appendChild(li);
+
   dropdownItems.forEach(item => {
     const button = document.createElement("button");
     button.classList.add("outline", "contrast");
