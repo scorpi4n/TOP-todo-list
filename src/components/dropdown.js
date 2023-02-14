@@ -19,7 +19,7 @@ export default function (title, ...dropdownItems) {
   // Add filter for all projects before adding each individual project
   const button = document.createElement("button");
   button.classList.add("outline", "contrast");
-  button.innerText = "All projects";
+  button.innerText = "All tasks";
   button.addEventListener("click", () => renderTasks(Task.load()));
   const li = document.createElement("li");
   li.appendChild(button);
