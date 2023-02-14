@@ -1,5 +1,5 @@
 import Task from "../js/Task";
-import { filterTasks, renderTasks } from "../js/utils";
+import { filterTasks, renderTasks, updateTitle } from "../js/utils";
 
 export default function (title, ...dropdownItems) {
   const dropdownWrapperEl = document.createElement("li");
@@ -20,7 +20,10 @@ export default function (title, ...dropdownItems) {
   const button = document.createElement("button");
   button.classList.add("outline", "contrast");
   button.innerText = "All tasks";
-  button.addEventListener("click", () => renderTasks(Task.load()));
+  button.addEventListener("click", () => {
+    renderTasks(Task.load());
+    updateTitle("All tasks");
+  });
   const li = document.createElement("li");
   li.appendChild(button);
   listboxEl.appendChild(li);
@@ -49,4 +52,5 @@ function handleClick(projectName) {
   let tasks = Task.load();
   let filteredTasks = filterTasks(tasks, { project: projectName });
   renderTasks(filteredTasks);
+  updateTitle(projectName);
 }

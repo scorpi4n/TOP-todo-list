@@ -49,3 +49,7 @@ export function getProjects(tasks = Task.load()) {
 export function toggleModal(modal = newTaskModal) {
   modal.toggleAttribute("open");
 }
+
+export function updateTitle(newTitle) {
+  document.querySelector("caption.title").innerText = newTitle;
+}
