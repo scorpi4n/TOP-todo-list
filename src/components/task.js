@@ -11,6 +11,7 @@ export default function (task) {
   const dueDateEl = td(`Due: ${format(dueDate, "P")}`);
 
   const btnEl = button("Complete");
+  btnEl.classList.add("outline");
   btnEl.addEventListener("click", e => handleClick(name, e));
 
   const btnWrapperEl = td();
