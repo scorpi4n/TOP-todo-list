@@ -1,7 +1,11 @@
-import dropdown from "./components/dropdown";
-import { filters, newTaskBtn, newTaskModal } from "./js/domElements";
+import { newTaskBtn, newTaskModal } from "./js/domElements";
 import Task from "./js/Task";
-import { filterTasks, getProjects, renderTasks, toggleModal } from "./js/utils";
+import {
+  filterTasks,
+  renderProjects,
+  renderTasks,
+  toggleModal,
+} from "./js/utils";
 import "./scss/style.scss";
 
 // UNCOMMENT TO RESET TASKS IN LOCALSTORAGE AND RECOMMENT ONCE DONE
@@ -29,8 +33,7 @@ import "./scss/style.scss";
 let tasks = Task.load();
 let filteredTasks = filterTasks(tasks);
 renderTasks(filteredTasks);
-
-filters.appendChild(dropdown("Projects", ...getProjects(tasks)));
+renderProjects(filteredTasks);
 
 // toggleModal using buttons in array
 [newTaskBtn, document.querySelector("#close-modal")].forEach(item => {

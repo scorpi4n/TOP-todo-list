@@ -21,7 +21,7 @@ export default function (title, ...dropdownItems) {
   button.classList.add("outline", "contrast");
   button.innerText = "All tasks";
   button.addEventListener("click", () => {
-    renderTasks(Task.load());
+    renderTasks(filterTasks(Task.load()));
     updateTitle("All tasks");
   });
   const li = document.createElement("li");

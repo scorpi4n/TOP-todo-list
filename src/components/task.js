@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { button, createElementWithClass, td } from "../js/domHelpers";
 import Task from "../js/Task";
+import { filterTasks, renderProjects, renderTasks } from "../js/utils";
 
 export default function (task) {
   const { name, dueDate, description } = task;
@@ -31,6 +32,8 @@ function handleClick(taskName, event) {
   });
   Task.save(tasks);
 
-  // delete task from visible table
-  event.target.parentElement.parentElement.style.display = "none";
+  const filteredTasks = filterTasks(tasks);
+
+  renderTasks(filteredTasks);
+  renderProjects(filteredTasks);
 }

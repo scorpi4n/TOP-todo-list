@@ -1,6 +1,13 @@
+import dropdown from "../components/dropdown";
 import task from "../components/task";
-import { newTaskModal, tasks as tasksEl } from "./domElements";
+import { filters, newTaskModal, tasks as tasksEl } from "./domElements";
 import Task from "./Task";
+
+export function renderProjects(tasks) {
+  filters.innerHTML = "";
+
+  filters.appendChild(dropdown("Projects", ...getProjects(tasks)));
+}
 
 export function renderTasks(tasks) {
   tasksEl.innerHTML = "";
@@ -30,6 +37,8 @@ export function filterTasks(
 
   if (project !== null) {
     tasks = tasks.filter(task => {
+      if (task.projectName === null) return false;
+
       return project.toLowerCase() === task.projectName.toLowerCase();
     });
   }
