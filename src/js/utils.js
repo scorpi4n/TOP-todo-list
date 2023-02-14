@@ -1,5 +1,6 @@
 import task from "../components/task";
 import { newTaskModal, tasks as tasksEl } from "./domElements";
+import Task from "./Task";
 
 export function renderTasks(tasks) {
   tasksEl.innerHTML = "";
@@ -39,6 +40,10 @@ export function filterTasks(
   // sorting
 
   return tasks;
+}
+
+export function getProjects(tasks = Task.load()) {
+  return new Set(tasks.map(task => task.projectName));
 }
 
 export function toggleModal(modal = newTaskModal) {
