@@ -1,3 +1,4 @@
+import "./components/newTaskModal";
 import { newTaskBtn, newTaskModal } from "./js/domElements";
 import Task from "./js/Task";
 import {
@@ -9,10 +10,10 @@ import {
 import "./scss/style.scss";
 
 // UNCOMMENT TO RESET TASKS IN LOCALSTORAGE AND RECOMMENT ONCE DONE
-
+//
 // localStorage.clear();
 // Task.save([
-//   new Task("name", "short desc", new Date(), 5, "Migrate Database"),
+//   new Task("name", "short desc", new Date(), 5),
 //   new Task("NAME", "i hate this", new Date(), 5, "Migrate Database"),
 //   new Task(
 //     "not v creative",
