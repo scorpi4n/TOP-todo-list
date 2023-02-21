@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { button, createElementWithClass, td } from "../js/domHelpers";
 import Task from "../js/Task";
-import { filterTasks, renderProjects, renderTasks } from "../js/utils";
+import { filterTasks, renderProjects } from "../js/utils";
 
 export default function (task) {
   const { name, dueDate, description } = task;
@@ -18,9 +18,16 @@ export default function (task) {
   const btnWrapperEl = td();
   btnWrapperEl.appendChild(btnEl);
 
+  const deleteEl = button("Delete");
+  deleteEl.classList.add("outline", "secondary");
+  deleteEl.addEventListener("click", e => handleDelete(task, e));
+
+  const deleteWrapperEl = td();
+  deleteWrapperEl.appendChild(deleteEl);
+
   const taskEl = createElementWithClass("tr", "task");
   taskEl.setAttribute("title", description);
-  taskEl.appendChildren(nameEl, dueDateEl, btnWrapperEl);
+  taskEl.appendChildren(nameEl, dueDateEl, btnWrapperEl, deleteWrapperEl);
 
   return taskEl;
 }
@@ -34,6 +41,11 @@ function handleClick(taskName, event) {
 
   const filteredTasks = filterTasks(tasks);
 
-  renderTasks(filteredTasks);
+  event.target.parentNode.parentNode.style.display = "none";
   renderProjects(filteredTasks);
+}
+
+function handleDelete(task, event) {
+  task.delete();
+  event.target.parentNode.parentNode.style.display = "none";
 }
