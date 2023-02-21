@@ -6,7 +6,8 @@ import Task from "./Task";
 export function renderProjects(tasks) {
   filters.innerHTML = "";
 
-  filters.appendChild(dropdown("Projects", ...getProjects(tasks)));
+  const projects = [...getProjects(tasks)].filter(i => i !== null);
+  filters.appendChild(dropdown("Projects", ...projects));
 }
 
 export function renderTasks(tasks) {
