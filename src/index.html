@@ -33,8 +33,9 @@
               <th>Name</th>
               <th>Date</th>
               <th>
-                <button id="new-task">New Task</button>
+                <button id="new-task">Create/Edit Task</button>
               </th>
+              <th></th>
             </tr>
           </thead>
           <tbody class="tasks"></tbody>
@@ -42,7 +43,7 @@
       </div>
     </main>
 
-    <dialog id="example-modal">
+    <dialog id="new-task-modal">
       <article>
         <header>
           <p>New Task</p>
@@ -86,7 +87,9 @@
           >
             Cancel
           </button>
-          <button type="submit" form="task-form">Submit</button>
+          <button id="submit-task-btn" type="submit" form="task-form">
+            Submit
+          </button>
         </footer>
       </article>
     </dialog>
