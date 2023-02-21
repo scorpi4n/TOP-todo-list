@@ -34,8 +34,9 @@ export default class Task {
   }
 
   delete(tasks = Task.load()) {
-    tasks = tasks.filter(task => task.id !== this.id);
+    tasks = tasks.filter(task => task.name !== this.name);
     Task.save(tasks);
+    console.log("deleting");
 
     return tasks;
   }
