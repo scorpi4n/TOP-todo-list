@@ -4,7 +4,9 @@ import Task from "../js/Task";
 import { filterTasks, renderProjects } from "../js/utils";
 
 export default function (task) {
-  const { name, dueDate, description } = task;
+  const { name, dueDate, description, priority } = task;
+
+  const priorityEl = td(priority);
 
   const nameEl = createElementWithClass("th", "task-name");
   nameEl.innerText = name;
@@ -27,7 +29,13 @@ export default function (task) {
 
   const taskEl = createElementWithClass("tr", "task");
   taskEl.setAttribute("title", description);
-  taskEl.appendChildren(nameEl, dueDateEl, btnWrapperEl, deleteWrapperEl);
+  taskEl.appendChildren(
+    nameEl,
+    dueDateEl,
+    priorityEl,
+    btnWrapperEl,
+    deleteWrapperEl
+  );
 
   return taskEl;
 }
