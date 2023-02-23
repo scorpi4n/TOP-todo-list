@@ -55,17 +55,18 @@
         </header>
         <form id="task-form" action="#" method="dialog">
           <label for="task-name">
-            Name:
-            <input name="name" type="text" id="task-name" />
+            <span class="text-red-400">*</span>Name:
+            <input required name="name" type="text" id="task-name" />
           </label>
           <div class="grid">
             <label for="task-date">
-              Due Date:
-              <input type="date" name="date" id="task-date" />
+              <span class="text-red-400">*</span>Due Date:
+              <input required type="date" name="date" id="task-date" />
             </label>
             <label for="task-priority">
-              Priority:
+              <span class="text-red-400">*</span>Priority:
               <input
+                required
                 type="number"
                 name="priority"
                 id="task-priority"
@@ -79,8 +80,12 @@
             <input type="text" name="project" id="task-project" />
           </label>
           <label for="task-description">
-            Description:
-            <textarea name="description" id="task-description"></textarea>
+            <span class="text-red-400">*</span>Description:
+            <textarea
+              required
+              name="description"
+              id="task-description"
+            ></textarea>
           </label>
         </form>
         <footer>

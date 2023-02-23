@@ -51,7 +51,6 @@ export default class Task {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
 
     if (!tasks) {
-      this.save([]);
       return [];
     }
 
