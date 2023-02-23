@@ -48,6 +48,7 @@
   "dependencies": {
     "@picocss/pico": "^1.5.7",
     "date-fns": "^2.29.3",
+    "toastify-js": "^1.12.0",
     "uuid": "^9.0.0"
   }
 }
