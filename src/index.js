@@ -1,3 +1,4 @@
+import Toastify from "toastify-js";
 import "./components/newTaskModal";
 import { newTaskBtn, newTaskModal } from "./js/domElements";
 import Task from "./js/Task";
@@ -40,3 +41,10 @@ renderProjects(filteredTasks);
 [newTaskBtn, document.querySelector("#close-modal")].forEach(item => {
   item.addEventListener("click", toggleModal.bind(null, newTaskModal));
 });
+
+Toastify({
+  text: "Hover over a task to see it's description",
+  duration: 5000,
+  gravity: "bottom",
+  position: "left",
+}).showToast();
