@@ -32,6 +32,7 @@
             <tr>
               <th>Name</th>
               <th>Date</th>
+              <th>Priority</th>
               <th>
                 <button id="new-task">Create/Edit Task</button>
               </th>
@@ -46,7 +47,11 @@
     <dialog id="new-task-modal">
       <article>
         <header>
-          <p>New Task</p>
+          <p>
+            Input a used name to edit that task!
+            <br />
+            An unused name will create a new task
+          </p>
         </header>
         <form id="task-form" action="#" method="dialog">
           <label for="task-name">
