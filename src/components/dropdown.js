@@ -1,4 +1,4 @@
-import Task from "../js/Task";
+import { getTasks } from "../js/Task";
 import { filterTasks, renderTasks, updateTitle } from "../js/utils";
 
 export default function (title, ...dropdownItems) {
@@ -21,7 +21,7 @@ export default function (title, ...dropdownItems) {
   button.classList.add("outline", "contrast");
   button.innerText = "All tasks";
   button.addEventListener("click", () => {
-    renderTasks(filterTasks(Task.load()));
+    renderTasks(filterTasks(getTasks()));
     updateTitle("All tasks");
   });
   const li = document.createElement("li");
@@ -49,7 +49,7 @@ export default function (title, ...dropdownItems) {
 }
 
 function handleClick(projectName) {
-  let tasks = Task.load();
+  let tasks = getTasks();
   let filteredTasks = filterTasks(tasks, { project: projectName });
   renderTasks(filteredTasks);
   updateTitle(projectName);

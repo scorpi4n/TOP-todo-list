@@ -1,7 +1,7 @@
 import dropdown from "../components/dropdown";
 import task from "../components/task";
 import { filters, newTaskModal, tasks as tasksEl } from "./domElements";
-import Task from "./Task";
+import { getTasks } from "./Task";
 
 export function renderProjects(tasks) {
   filters.innerHTML = "";
@@ -52,7 +52,7 @@ export function filterTasks(
   return tasks;
 }
 
-export function getProjects(tasks = Task.load()) {
+export function getProjects(tasks = getTasks()) {
   return new Set(tasks.map(task => task.projectName));
 }
 

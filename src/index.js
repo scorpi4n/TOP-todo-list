@@ -1,19 +1,19 @@
 import Toastify from "toastify-js";
 import "./components/newTaskModal";
 import { newTaskBtn, newTaskModal } from "./js/domElements";
-import Task from "./js/Task";
+import Task, { getTasks, saveTasks } from "./js/Task";
 import {
   filterTasks,
   renderProjects,
   renderTasks,
-  toggleModal,
+  toggleModal
 } from "./js/utils";
 import "./scss/style.scss";
 
-let tasks = Task.load();
+let tasks = getTasks();
 
 if (localStorage.getItem("tasks") === null) {
-  tasks = Task.save([
+  tasks = saveTasks([
     new Task(
       "Check out Listo!",
       "I found a cool Todo app called Listo and I want to explore it",

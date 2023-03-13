@@ -1,4 +1,4 @@
-import Task from "./Task";
+import { getTasks } from "./Task";
 
 export default class Project {
   constructor(name, isCompleted = false) {
@@ -12,7 +12,7 @@ export default class Project {
 
   complete() {
     // validate that no tasks in a project are incomplete before marking the project complete
-    const incompleteTasks = Task.load().filter(task => !task.isCompleted);
+    const incompleteTasks = getTasks().filter(task => !task.isCompleted);
     if (!incompleteTasks.length) {
       this._isCompleted = true;
       return true;
@@ -44,7 +44,7 @@ export default class Project {
   }
 
   addTask(taskId) {
-    let tasks = Task.load();
+    let tasks = getTasks();
     let task = tasks.filter(task => taskId === task.id);
 
     task.projectName = this.name;

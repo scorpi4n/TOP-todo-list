@@ -4,15 +4,15 @@ import {
   nameInput,
   priorityInput,
   projectInput,
-  submitTaskBtn,
+  submitTaskBtn
 } from "../js/domElements";
-import Task from "../js/Task";
+import Task, { getTasks, saveTasks } from "../js/Task";
 import { filterTasks, renderProjects, renderTasks } from "../js/utils";
 
 submitTaskBtn.addEventListener("click", handleSubmit);
 
 function handleSubmit() {
-  let tasks = Task.load();
+  let tasks = getTasks();
 
   tasks.forEach(task => {
     if (task.name === nameInput.value) {
@@ -29,7 +29,7 @@ function handleSubmit() {
       projectInput.value.length ? projectInput.value : null
     )
   );
-  Task.save(tasks);
+  saveTasks(tasks);
 
   const filteredTasks = filterTasks(tasks);
   renderTasks(filteredTasks);

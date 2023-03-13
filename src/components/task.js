@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { button, createElementWithClass, td } from "../js/domHelpers";
-import Task from "../js/Task";
+import { getTasks, saveTasks } from "../js/Task";
 import { filterTasks, renderProjects } from "../js/utils";
 
 export default function (task) {
@@ -41,11 +41,11 @@ export default function (task) {
 }
 
 function handleClick(taskName, event) {
-  let tasks = Task.load().map(task => {
+  let tasks = getTasks().map(task => {
     if (taskName === task.name) task.complete();
     return task;
   });
-  Task.save(tasks);
+  saveTasks(tasks);
 
   const filteredTasks = filterTasks(tasks);
 

@@ -33,41 +33,41 @@ export default class Task {
     return this;
   }
 
-  delete(tasks = Task.load()) {
+  delete(tasks = getTasks()) {
     tasks = tasks.filter(task => task.name !== this.name);
-    Task.save(tasks);
+    saveTasks(tasks);
     console.log("deleting");
 
     return tasks;
   }
+}
 
-  static save(tasks) {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+export function getTasks() {
+  let tasks = JSON.parse(localStorage.getItem("tasks"));
 
-    return tasks;
+  if (!tasks) {
+    return [];
   }
 
-  static load() {
-    let tasks = JSON.parse(localStorage.getItem("tasks"));
+  tasks = tasks.map(task => {
+    task = new Task(
+      task.name,
+      task.description,
+      task.dueDate,
+      task.priority,
+      task.projectName,
+      task.id,
+      task.isCompleted
+    );
 
-    if (!tasks) {
-      return [];
-    }
+    return task;
+  });
 
-    tasks = tasks.map(task => {
-      task = new Task(
-        task.name,
-        task.description,
-        task.dueDate,
-        task.priority,
-        task.projectName,
-        task.id,
-        task.isCompleted
-      );
+  return tasks;
+}
 
-      return task;
-    });
+export function saveTasks(tasks) {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 
-    return tasks;
-  }
+  return tasks;
 }
